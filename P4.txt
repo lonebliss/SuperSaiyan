@@ -1,0 +1,38 @@
+ServerDate.java
+importjava.rmi.*;
+importjava.rmi.server.*;
+importjava.util.*;
+public class ServerDate extends UnicastRemoteObject implements InterDate {
+publicServerDate() throws Exception
+{
+}
+public String display() throws Exception
+{
+String str = "";
+Date d = new Date();
+str = d.toString();
+returnstr;
+}
+public static void main(String args[]) throws Exception
+{
+ServerDate s1 = new ServerDate();
+Naming.bind("DS", s1);
+System.out.println("Object registered.....");
+}
+}
+
+ClientDate.java
+importjava.rmi.*;
+import java.io.*;
+public class ClientDate
+{
+public static void main(String args[]) throws Exception {
+String s1;
+InterDate h1 = (InterDate)Naming.lookup("DS"); s1 = h1.display();
+System.out.println(s1);
+}
+} 
+InterDate.java
+importjava.rmi.*;
+public interface InterDate extends Remote {
+public String display() throws Exception; }

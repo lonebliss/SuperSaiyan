@@ -1,0 +1,63 @@
+tcpClientPrime.java
+import java.net.*;
+import java .io.*;
+classtcpClientPrime {
+public static void main(String args[]) {
+try
+{
+Socket cs = new Socket("LocalHost",8001);
+BufferedReaderinfu = new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter a number : ");
+int a = Integer.parseInt(infu.readLine());
+DataOutputStream out = new DataOutputStream(cs.getOutputStream());
+out.writeInt(a);
+DataInputStream in = new DataInputStream(cs.getInputStream());
+System.out.println(in.readUTF());
+cs.close();
+ }
+catch(Exception e)
+{
+System.out.println(e.toString());
+ }
+ }
+}
+
+tcpServerPrime.java
+import java.net.*;
+import java .io.*;
+classtcpServerPrime
+{
+ public static void main(String args[])
+ {
+ try
+ {
+ ServerSocketss = new ServerSocket(8001);
+ System.out.println("Server Started..........");
+ Socket s = ss.accept();
+ DataInputStream in = new DataInputStream(s.getInputStream());
+ int x = in.readInt();
+ DataOutputStreamotc = new DataOutputStream(s.getOutputStream());
+ int y = x/2;
+ if(x == 1 || x==2 || x==3)
+ {
+ otc.writeUTF(x+"isPrime");
+ System.exit(0);
+}
+ for(int i =2; i<=y; i++)
+ {
+ if(x % i != 0)
+ {
+ otc.writeUTF(x+"is Prime");
+ }
+ Else
+ {
+ otc.writeUTF(x+"is not Prime");
+ }
+ }
+ }
+ catch(Exception e)
+ {
+ System.out.println(e.toString());
+ }
+ }
+ }
